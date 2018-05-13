@@ -19,7 +19,7 @@ const config = {
     }],
   },
   plugins: [
-    new CleanWebpackPlugin([dist]),
+    new CleanWebpackPlugin(dist, { allowExternal: true }),
     new HtmlWebpackPlugin({
       template: path.resolve(root, 'app/src/index.html'),
       title: 'Form Generator',

@@ -13,7 +13,7 @@ const RadioInput = ({
     selectedValue={value}
   >
     {options && options.map(({ label: labelOption, value: valueOption }) => (
-      <Radio key={`radio-${value}`} label={labelOption} value={valueOption} />
+      <Radio key={`radio-${valueOption}`} label={labelOption} value={valueOption} />
     ))}
   </RadioGroup>
 );

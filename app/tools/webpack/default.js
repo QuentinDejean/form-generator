@@ -11,10 +11,18 @@ const config = {
     app: path.resolve(root, 'app/src/index.js'),
   },
   devtool: 'inline-source-map',
+  module: {
+    rules: [{
+      test: /\.(js)$/,
+      exclude: /node_modules/,
+      use: ['babel-loader'],
+    }],
+  },
   plugins: [
     new CleanWebpackPlugin([dist]),
     new HtmlWebpackPlugin({
-      title: 'Development',
+      template: path.resolve(root, 'app/src/index.html'),
+      title: 'Form Generator',
     }),
   ],
   output: {

@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+const webpack = require('webpack');
+
 const {
   config: defaultConfig,
   path: {
@@ -10,9 +13,16 @@ const config = {
 
   devServer: {
     contentBase: dist,
+    hot: true,
   },
 
   mode: 'development',
+
+  plugins: [
+    ...defaultConfig.plugins,
+
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
 
 module.exports = config;

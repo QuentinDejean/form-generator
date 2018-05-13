@@ -7,6 +7,14 @@ const data = [
       value: 'Obiwan Kenobi',
     },
   },
+  {
+    type: 1,
+    params: {
+      label: 'Date of Birth',
+      required: true,
+      min: 18,
+    },
+  },
 ];
 
 export default data;

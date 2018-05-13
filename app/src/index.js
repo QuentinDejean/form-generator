@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import BaseLayout from './components/layout/BaseLayout';
+
 ReactDOM.render(
-  <div>All good in the hood!</div>,
+  <BaseLayout>
+    <div>All good in the hood!</div>
+  </BaseLayout>,
   document.getElementById('app'),
 );
 

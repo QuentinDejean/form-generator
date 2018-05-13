@@ -1,5 +1,6 @@
 import React from 'react';
 import DateInput from '../molecules/DateInput/DateInput';
+import Radio from '../molecules/Radio/Radio';
 import TextInput from '../molecules/TextInput/TextInput';
 
 import types from '../../utils/form/types';
@@ -15,6 +16,12 @@ const formMapper = data =>
     if (type === types.DATE) {
       return (
         <DateInput id={`input-date-${index}`} {...otherData} />
+      );
+    }
+
+    if (type === types.RADIO) {
+      return (
+        <Radio {...otherData} />
       );
     }
 

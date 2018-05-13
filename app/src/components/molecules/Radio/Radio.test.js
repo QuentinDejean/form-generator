@@ -2,7 +2,7 @@ import React from 'react';
 import { Radio, RadioGroup } from '@blueprintjs/core';
 import { shallow } from 'enzyme';
 
-import RadioInput from './Radio';
+import { RadioInputC as RadioInput } from './Radio';
 
 describe('Radio', () => {
   describe('default', () => {
@@ -10,21 +10,22 @@ describe('Radio', () => {
 
     const props = {
       id: 'some-id',
+      onRadioChange: () => {},
       params: {
         label: 'label',
         required: true,
-        value: 'value',
         options: [
           {
             label: 'Male',
-            value: 0,
+            value: '0',
           },
           {
             label: 'Female',
-            value: 1,
+            value: '1',
           },
         ],
       },
+      value: 'value',
     };
 
     beforeAll(() => {
@@ -35,8 +36,16 @@ describe('Radio', () => {
       expect(wrapper.find(RadioGroup)).toBeDefined();
     });
 
+    it('passes value to RadioGroup as value prop', () => {
+      expect(wrapper.find(RadioGroup).props().selectedValue).toEqual(props.value);
+    });
+
+    it('passes onRadioChange to RadioGroup as value prop', () => {
+      expect(wrapper.find(RadioGroup).props().onChange).toEqual(props.onRadioChange);
+    });
+
     describe('params props', () => {
-      const { label, required, value } = props.params;
+      const { label, required } = props.params;
 
       it('passes label to RadioGroup as label prop', () => {
         expect(wrapper.find(RadioGroup).props().label).toEqual(label);
@@ -44,10 +53,6 @@ describe('Radio', () => {
 
       it('passes required to RadioGroup as requiredLabel prop', () => {
         expect(wrapper.find(RadioGroup).props().requiredLabel).toEqual(required);
-      });
-
-      it('passes value to input as value prop', () => {
-        expect(wrapper.find(RadioGroup).props().selectedValue).toEqual(value);
       });
 
       describe('options props', () => {

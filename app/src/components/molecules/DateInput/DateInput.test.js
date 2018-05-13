@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, InputGroup } from '@blueprintjs/core';
 import { shallow } from 'enzyme';
 
-import DateInput from './DateInput';
+import { DateInputC as DateInput } from './DateInput';
 
 describe('DateInput', () => {
   describe('default', () => {
@@ -10,6 +10,7 @@ describe('DateInput', () => {
 
     const props = {
       id: 'some-id',
+      onInputChange: () => {},
       params: {
         label: 'label',
         required: true,
@@ -27,6 +28,10 @@ describe('DateInput', () => {
 
     it('passes id to FormGroup as labelFor prop', () => {
       expect(wrapper.find(FormGroup).props().labelFor).toEqual(props.id);
+    });
+
+    it('passes onInputChange to InputGroup', () => {
+      expect(wrapper.find(InputGroup).props().onChange).toEqual(props.onInputChange);
     });
 
     describe('params props', () => {

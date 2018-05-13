@@ -9,10 +9,20 @@ const enhance = compose(withProps(({ data, ...otherProps }) => ({
   inputs: data && formMapper(data),
 })));
 
-const UserDetails = ({ inputs, onSubmit }) => (
-  <Form onSubmit={onSubmit}>
-    {inputs && inputs.map((input, index) => <div key={`user-details-${index}`}>{input}</div>)}
-  </Form>
+const UserDetails = ({
+  dataExport,
+  inputs,
+  values,
+  onSubmit,
+}) => (
+  <React.Fragment>
+    <h2>User Details</h2>
+    <Form values={values} onSubmit={onSubmit}>
+      {inputs && inputs.map((input, index) => <div key={`user-details-${index}`}>{input}</div>)}
+    </Form>
+    <h2>Data Export:</h2>
+    <div>{JSON.stringify(dataExport)}</div>
+  </React.Fragment>
 );
 
 export { UserDetails as UserDetailsC };

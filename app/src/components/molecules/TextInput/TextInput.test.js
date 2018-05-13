@@ -1,8 +1,8 @@
 import React from 'react';
-import { FormGroup } from '@blueprintjs/core';
+import { FormGroup, InputGroup } from '@blueprintjs/core';
 import { shallow } from 'enzyme';
 
-import TextInput from './TextInput';
+import { TextInputC as TextInput } from './TextInput';
 
 describe('TextInput', () => {
   describe('default', () => {
@@ -10,11 +10,12 @@ describe('TextInput', () => {
 
     const props = {
       id: 'some-id',
+      onInputChange: () => {},
       params: {
         label: 'label',
         required: true,
-        value: 'value',
       },
+      value: 'value',
     };
 
     beforeAll(() => {
@@ -29,8 +30,16 @@ describe('TextInput', () => {
       expect(wrapper.find(FormGroup).props().labelFor).toEqual(props.id);
     });
 
+    it('passes value to input as value prop', () => {
+      expect(wrapper.find(InputGroup).props().value).toEqual(props.value);
+    });
+
+    it('passes onInputChange to input as value prop', () => {
+      expect(wrapper.find(InputGroup).props().onChange).toEqual(props.onInputChange);
+    });
+
     describe('params props', () => {
-      const { label, required, value } = props.params;
+      const { label, required } = props.params;
 
       it('passes label to FormGroup as label prop', () => {
         expect(wrapper.find(FormGroup).props().label).toEqual(label);
@@ -38,10 +47,6 @@ describe('TextInput', () => {
 
       it('passes required to FormGroup as requiredLabel prop', () => {
         expect(wrapper.find(FormGroup).props().requiredLabel).toEqual(required);
-      });
-
-      it('passes value to input as value prop', () => {
-        expect(wrapper.find('input').props().value).toEqual(value);
       });
     });
   });

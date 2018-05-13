@@ -20,5 +20,10 @@ const transformData = data => data.map(({ type, ...otherData }) => {
   };
 });
 
-export { errorMessage };
-export default transformData;
+const getFormData = data =>
+  data.reduce((formData, { name, params }) => ({
+    ...formData,
+    [name]: params ? params.value : undefined,
+  }), {});
+
+export { errorMessage, getFormData, transformData };

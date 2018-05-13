@@ -7,6 +7,10 @@ import Form from '../../molecules/Form/Form';
 describe('UserDetails', () => {
   const defaultProps = {
     onSubmit: () => {},
+    values: {
+      dob: 1981,
+      gender: 'male',
+    },
   };
 
   describe('default', () => {
@@ -21,6 +25,10 @@ describe('UserDetails', () => {
 
     it('passes onSubmit prop to Form', () => {
       expect(wrapper.find(Form).props().onSubmit).toEqual(defaultProps.onSubmit);
+    });
+
+    it('passes values prop to Form', () => {
+      expect(wrapper.find(Form).props().values).toEqual(defaultProps.values);
     });
   });
 

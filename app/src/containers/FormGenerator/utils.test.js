@@ -1,4 +1,4 @@
-import transformData, { errorMessage } from './utils';
+import { errorMessage, getFormData, transformData } from './utils';
 import types from '../../utils/form/types';
 
 describe('transformData', () => {
@@ -56,5 +56,38 @@ describe('transformData', () => {
         expect(e.toString()).toContain(errorMessage.unkownType);
       }
     });
+  });
+});
+
+describe('getFormData', () => {
+  it('returns an object for the given array', () => {
+    const name = {
+      name: 'name',
+      type: 0,
+      params: {
+        label: 'Name',
+        required: false,
+        value: 'Obiwan Kenobi',
+      },
+    };
+
+    const dob = {
+      name: 'dob',
+      type: 1,
+      params: {
+        label: 'Date of Birth',
+        required: true,
+        min: 18,
+      },
+    };
+
+    const data = [name, dob];
+
+    const expectedOutput = {
+      [name.name]: name.params.value,
+      [dob.name]: dob.params.value,
+    };
+
+    expect(getFormData(data)).toEqual(expectedOutput);
   });
 });

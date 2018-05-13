@@ -1,4 +1,4 @@
-import { compose, withHandlers } from 'recompose';
+import { compose, withHandlers, withState } from 'recompose';
 import UserDetails from '../../components/templates/UserDetails/UserDetails';
 import FormGenerator from '../FormGenerator/FormGenerator';
 
@@ -6,9 +6,10 @@ import data from './data';
 
 const enhance = compose(
   FormGenerator(data),
+  withState('dataExport', 'setDataExport', ({ values }) => values),
   withHandlers({
-    onSubmit: () => () => {
-      console.log('form submitted!');
+    onSubmit: ({ setDataExport }) => (values) => {
+      setDataExport(values);
     },
   }),
 );

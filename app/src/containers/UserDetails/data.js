@@ -1,5 +1,6 @@
 const data = [
   {
+    name: 'name',
     type: 0,
     params: {
       label: 'Name',
@@ -8,6 +9,7 @@ const data = [
     },
   },
   {
+    name: 'dob',
     type: 1,
     params: {
       label: 'Date of Birth',
@@ -16,19 +18,20 @@ const data = [
     },
   },
   {
+    name: 'gender',
     type: 2,
     params: {
       label: 'Gender',
       required: false,
-      value: 0,
+      value: '0',
       options: [
         {
           label: 'Male',
-          value: 0,
+          value: '0',
         },
         {
           label: 'Female',
-          value: 1,
+          value: '1',
         },
       ],
     },

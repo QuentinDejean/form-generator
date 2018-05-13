@@ -6,16 +6,16 @@ import TextInput from '../molecules/TextInput/TextInput';
 import types from '../../utils/form/types';
 
 const formMapper = data =>
-  data && data.map(({ type, ...otherData }, index) => {
+  data && data.map(({ type, ...otherData }) => {
     if (type === types.TEXT) {
       return (
-        <TextInput id={`input-text-${index}`} {...otherData} />
+        <TextInput {...otherData} />
       );
     }
 
     if (type === types.DATE) {
       return (
-        <DateInput id={`input-date-${index}`} {...otherData} />
+        <DateInput {...otherData} />
       );
     }
 

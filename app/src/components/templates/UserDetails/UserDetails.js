@@ -1,5 +1,17 @@
 import React from 'react';
+import { compose, withProps } from 'recompose';
 
-const UserDetails = data => <div>{JSON.stringify(data)}</div>;
+import formMapper from '../../utils/formMapper';
 
-export default UserDetails;
+const enhance = compose(withProps(({ data, ...otherProps }) => ({
+  ...otherProps,
+  inputs: data && formMapper(data),
+})));
+
+const UserDetails = ({ inputs }) => {
+  const FirstName = inputs[0];
+
+  return (<div>{FirstName}</div>);
+};
+
+export default enhance(UserDetails);

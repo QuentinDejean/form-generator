@@ -1,7 +1,11 @@
 const data = [
   {
     type: 0,
-    value: 'Obiwan Kenobi',
+    params: {
+      label: 'Name',
+      required: false,
+      value: 'Obiwan Kenobi',
+    },
   },
 ];
 

@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { compose, withContext, withHandlers, withState } from 'recompose';
 import { Button, Intent } from '@blueprintjs/core';
 
+const styles = {
+  paddingTop: '32px',
+};
+
 const enhancer = compose(
   withState('values', 'setValues', ({ values }) => ({ ...values })),
   withHandlers(({ setValues, values }) => {
@@ -35,7 +39,7 @@ const enhancer = compose(
 const Form = ({ submitForm, children }) => (
   <form onSubmit={submitForm}>
     {children}
-    <div>
+    <div style={styles}>
       <Button intent={Intent.PRIMARY} onClick={submitForm}>Submit</Button>
     </div>
   </form>
